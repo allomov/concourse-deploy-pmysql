@@ -124,7 +124,7 @@ jobs:
         params:
           globs:
           - p-mysql-plugin-linux
-        passed: [populate-or-rotate-vault]
+        # passed: [populate-or-rotate-vault]
     - task: get-product-version
       config:
         platform: linux
