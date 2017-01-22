@@ -30,9 +30,6 @@ concourse-pass: PASSWORD
 deployment-name: staging
 elastic-runtime-version: 1.7.15
 skip-haproxy: false
-slack-channel: '#ops'
-slack-username: ops-user
-slack-icon-url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
 stemcell: bosh-vsphere-esxi-ubuntu-trusty-go_agent
 stemcell-cpi-glob: '*vsphere*'
 stemcell-version: 3232.17
