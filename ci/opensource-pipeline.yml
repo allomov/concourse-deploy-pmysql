@@ -67,16 +67,6 @@ resources:
     client_secret: {{bosh-client-secret}}
     deployment: cf
     target: {{bosh-url}}
-- name: slack
-  type: slack-notification
-  source:
-    url: https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX
-
-resource_types:
-- name: slack-notification
-  type: docker-image
-  source:
-    repository: cfcommunity/slack-notification-resource
 
 jobs:
 - name: deploy
@@ -143,24 +133,7 @@ jobs:
         - etcd-release/*.tgz
         - cf-mysql-release/*.tgz
         - cflinuxfs2-release/*.tgz
-      on_success:
-        put: slack
-        params:
-          text: |
-            :white_check_mark: Successfully deployed {{deployment-name}} CF
-            <https://$ATC_EXTERNAL_URL/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
-          channel: {{slack-channel}}
-          username: {{slack-username}}
-          icon_url: {{slack-icon-url}}
-      on_failure:
-        put: slack
-        params:
-          text: |
-            :x: FAILED to deploy {{deployment-name}} CF
-            <https://$ATC_EXTERNAL_URL/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
-          channel: {{slack-channel}}
-          username: {{slack-username}}
-          icon_url: {{slack-icon-url}}
+
 - name: run-smoke-tests
   plan:
   - aggregate:
@@ -178,24 +151,7 @@ jobs:
       BOSH_DEPLOYMENT_NAME: {{deployment-name}}
       BOSH_ERRAND: smoke_tests
       BOSH_CACERT: {{bosh-cacert}}
-    on_success:
-      put: slack
-      params:
-        text: |
-          :white_check_mark: Smoke tests for {{deployment-name}} CF passed
-          <https://$ATC_EXTERNAL_URL/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
-        channel: {{slack-channel}}
-        username: {{slack-username}}
-        icon_url: {{slack-icon-url}}
-    on_failure:
-      put: slack
-      params:
-        text: |
-          :x: Smoke tests for {{deployment-name}} CF failed
-          <https://$ATC_EXTERNAL_URL/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
-        channel: {{slack-channel}}
-        username: {{slack-username}}
-        icon_url: {{slack-icon-url}}
+
 - name: run-acceptance-tests
   plan:
   - aggregate:
@@ -213,21 +169,3 @@ jobs:
       BOSH_DEPLOYMENT_NAME: {{deployment-name}}
       BOSH_ERRAND: smoke_tests
       BOSH_CACERT: {{bosh-cacert}}
-    on_success:
-      put: slack
-      params:
-        text: |
-          :white_check_mark: Acceptance tests for {{deployment-name}} CF passed
-          <https://$ATC_EXTERNAL_URL/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
-        channel: {{slack-channel}}
-        username: {{slack-username}}
-        icon_url: {{slack-icon-url}}
-    on_failure:
-      put: slack
-      params:
-        text: |
-          :x: Acceptance tests for {{deployment-name}} CF failed
-          <https://$ATC_EXTERNAL_URL/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
-        channel: {{slack-channel}}
-        username: {{slack-username}}
-        icon_url: {{slack-icon-url}}
