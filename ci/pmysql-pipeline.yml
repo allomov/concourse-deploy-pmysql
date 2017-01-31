@@ -33,6 +33,7 @@ resources:
     api_token: {{pivnet_api_token}}
     product_slug: p-mysql
     product_version: {{p-mysql-version}}
+    product_version: {{pmysql-runtime-version}}
 - name: concourse-deploy-p-mysql
   type: git
   check_every: 4h
@@ -45,6 +46,7 @@ resources:
   source:
     user: enaml-ops
     repository: omg-cli
+
 - name: omg-product-bundle
   type: github-release
   check_every: 4h
@@ -81,10 +83,14 @@ jobs:
         trigger: true
       - get: concourse-deploy-p-mysql
       - get: omg-cli
+        version: &omg-cli-version
+          tag: {{omg-cli-version}}
         params:
           globs:
           - omg-linux
       - get: omg-product-bundle
+        version: &omg-product-bundle-version
+          tag: {{omg-product-bundle-version}}
         params:
           globs:
           - p-mysql-plugin-linux
@@ -116,10 +122,12 @@ jobs:
     - aggregate:
       - get: concourse-deploy-p-mysql
       - get: omg-cli
+        version: *omg-cli-version
         params:
           globs:
           - omg-linux
       - get: omg-product-bundle
+        version: *omg-product-bundle-version
         trigger: true
         params:
           globs:
@@ -172,6 +180,7 @@ jobs:
           globs:
           - omg-linux
       - get: omg-product-bundle
+        version: *omg-product-bundle-version
         passed: [get-product-version]
         trigger: true
         params:

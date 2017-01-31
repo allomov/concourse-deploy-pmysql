@@ -28,7 +28,9 @@ concourse-url: http://10.0.0.31:8080
 concourse-user: USERNAME
 concourse-pass: PASSWORD
 deployment-name: staging
-elastic-runtime-version: 1.7.15
+pmysql-runtime-version: 1.7.15
+omg-cli-version: v1.0.3
+omg-product-bundle-version: v1.0.7
 skip-haproxy: false
 stemcell: bosh-vsphere-esxi-ubuntu-trusty-go_agent
 stemcell-cpi-glob: '*vsphere*'
