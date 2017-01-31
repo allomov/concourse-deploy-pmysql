@@ -33,7 +33,6 @@ resources:
     api_token: {{pivnet_api_token}}
     product_slug: p-mysql
     product_version: {{p-mysql-version}}
-    product_version: {{pmysql-runtime-version}}
 - name: concourse-deploy-p-mysql
   type: git
   check_every: 4h
