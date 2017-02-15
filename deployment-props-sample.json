@@ -1,8 +1,13 @@
 {
-  "bosh-client-id": "UAA_CLIENT_ID_WITH_client_credentials_GRANT_TYPE",
-  "bosh-client-secret": "SHARED_SECRET",
-  "bosh-cacert": "-----BEGIN CERTIFICATE-----\n...\n...\n....----END CERTIFICATE-----\n",
-  "bosh-pass": "PASSWORD",
-  "bosh-url": "https://10.0.0.10",
-  "bosh-user": "admin",
+  "network": "network-name",
+  "ip": "x.x.x.x", // mysql-ip-address, set to a new value
+  "proxy-ip": "x.x.x.x", // proxy-ip-address, set to a new value
+  "monitoring-ip": "x.x.x.x", // monitoring-service-ip-address, set to a new value
+  "broker-ip": "x.x.x.x", // mysql-service-broker-ip-address , set to a new value
+  "base-domain": "example.com",
+  "notification-recipient-email": "noreply@altoros.com",
+  "az": "az1",
+  "pivnet_api_token": "value",
+  "syslog-address": "x.x.x.x" // syslog from CF deployment
 }
+
