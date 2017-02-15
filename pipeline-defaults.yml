@@ -2,6 +2,5 @@ stemcell-cpi-glob: '*vsphere*'
 stemcell-version: 3232.17
 product_plugin: p-mysql-plugin-linux
 p-mysql-version: "1.7.12"
-omg-cli-version: v1.0.3
-omg-product-bundle-version: v1.0.7-484e6c
-
+omg-cli-version: "v1.0.3-572df1"
+omg-product-bundle-version: "v1.0.7-484e6c"
