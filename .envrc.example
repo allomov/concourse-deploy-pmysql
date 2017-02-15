@@ -1,0 +1,17 @@
+source_env ../..
+
+export PRODUCT_NAME=p-mysql
+export PIPELINE_REPO=https://github.com/Altoros/concourse-deploy-p-mysql.git
+
+export CONCOURSE_URI=http://x.x.x.x:8080
+export CONCOURSE_TARGET=concourse
+export CONCOURSE_USER=
+export CONCOURSE_PASSWORD=
+
+# Vault info
+export VAULT_ADDR=
+export VAULT_TOKEN=
+
+
+export PATH=$PATH:$PWD/common/bin
+
