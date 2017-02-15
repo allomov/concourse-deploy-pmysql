@@ -1,0 +1,5 @@
+.envrc
+.plugins
+temp/*
+deployment-props.json
+
