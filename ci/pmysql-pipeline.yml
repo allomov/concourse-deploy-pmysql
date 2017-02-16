@@ -37,8 +37,10 @@ resources:
   type: git
   check_every: 4h
   source:
-    uri: https://github.com/enaml-ops/concourse-deploy-pmysql
-    branch: master
+    uri: {{pipeline-repo}}
+    branch: {{pipeline-repo-branch}}
+    private_key: {{pipeline-repo-private-key}}
+
 - name: omg-cli
   type: github-release
   check_every: 4h

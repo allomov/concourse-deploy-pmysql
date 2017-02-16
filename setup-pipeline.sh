@@ -36,7 +36,8 @@ fly -t $CONCOURSE_TARGET set-pipeline -p $PRODUCT_NAME-$FOUNDATION_NAME \
               --var="vault-token=$VAULT_TOKEN" \
               --var="foundation-name=$FOUNDATION_NAME" \
               --var="pipeline-repo=$PIPELINE_REPO" \
-              --var="pipeline-repo-brunch=master" \
+              --var="pipeline-repo-branch=$PIPELINE_REPO_BRANCH" \
+              --var="pipeline-repo-private-key=$PIPELINE_REPO_PRIVA" \
               --var="product-name=$PRODUCT_NAME" \
               --var="concourse-url=$CONCOURSE_URI" \
               --var="concourse-user=$CONCOURSE_USER" \
