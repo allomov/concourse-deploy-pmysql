@@ -8,13 +8,13 @@ export CF_VAULT_PROPS_HASH=secret/cf-$FOUNDATION_NAME-props
 echo "requires files (rootCA.pem, director.pwd, deployment-props.json)"
 vault write ${VAULT_HASH} \
   bosh-cacert=@$BOSH_CA_CERT \
-  bosh-url=$BOSH_ENVIRONMENT \
+  bosh-url=https://$BOSH_ENVIRONMENT \
   bosh-user=admin \
   bosh-pass=$BOSH_CLIENT_SECRET \
   bosh-client-secret=$BOSH_CLIENT_SECRET \
   bosh-client-id=director \
   bosh-port="25555" \
-  vm-type="large" \
+  vm-type="medium" \
   disk-type="large" \
   base-domain=$(vault read --field=base-domain $CF_VAULT_PROPS_HASH) \
   admin-password=$(vault read --field=admin-password $CF_VAULT_PASSWORD_HASH) \

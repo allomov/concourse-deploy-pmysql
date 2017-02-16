@@ -45,6 +45,7 @@ resources:
   source:
     user: enaml-ops
     repository: omg-cli
+    pre_release: true
 
 - name: omg-product-bundle
   type: github-release
